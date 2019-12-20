@@ -1,7 +1,12 @@
 import React from 'react'
 import SearchInput from './SearchInput'
 import SearchResults from './SearchResults'
-import { tryCatch } from 'ramda'
+
+
+ // Responsibility: communicating with the API and coordinates SearchInput and SearchResults
+
+ // Note: The acquired data object from the API was used directly in this app, this highly ties the implementation to the API
+ //    To decouple it from the API, a standard air quality object should be defined, and this APIs object be converted to it
 
 class Search extends React.Component {
   constructor(props) {
@@ -19,7 +24,6 @@ class Search extends React.Component {
         `http://api.waqi.info/search/?keyword=${query}&token=8d8e978e647d2b0a8c17c04ba331c0117cd06dc8`,
       )
       let responses = (await response.json()).data;
-      console.log(responses)
       this.setState({ searchResults: responses },
       )
     }catch (e) {
@@ -29,14 +33,11 @@ class Search extends React.Component {
 
   async searchResultClicked(searchResult) {
     try {
-
-
       let response = await fetch(
         `http://api.waqi.info/feed/${searchResult.station.name}/?token=8d8e978e647d2b0a8c17c04ba331c0117cd06dc8`,
       )
       let locationData = (await response.json()).data
       this.setState({ searchResults: [] });
-      console.log('locationdata: '+JSON.stringify(locationData))
       this.props.locationDataReceived(locationData);
     }catch (e) {
       this.setState({error: e.message});

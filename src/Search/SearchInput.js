@@ -1,5 +1,6 @@
 import React from 'react'
 
+// Shows the search input to the user
 class SearchInput extends React.Component {
   constructor(props) {
     super(props)
@@ -22,7 +23,6 @@ class SearchInput extends React.Component {
       <div className="input-group p-1 bg-light rounded rounded-pill shadow-sm mb-4">
         <input
           type="search"
-          // value={search}
           placeholder="Search Locations"
           onChange={this.searchFieldChanged}
           className="form-control border-0 bg-light"

@@ -1,5 +1,4 @@
 import React from 'react'
-import * as R from 'ramda'
 import 'tachyons'
 import Header from './Header'
 import Search from './Search/Search'
@@ -23,13 +22,13 @@ class App extends React.Component{
   }
 
   componentDidCatch(error, errorInfo) {
-    console.log(error);
+    // todo implement an error boundary here to complement other error handlings
   }
 
 
   render() {
    return <div>
-      <Header title={'Air Quality'}/>
+      <Header title={'Air Quality Report'}/>
       <div style={{maxWidth: "600px"}} className="container float">
         <Search searchInitiated={this.searchInitiated} locationDataReceived={this.locationDataReceived}/>
         {(this.state.locationData)  && <AirQualityDisplay airQualityData={this.state.locationData}/>}
