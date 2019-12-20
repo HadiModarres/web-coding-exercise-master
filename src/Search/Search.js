@@ -26,13 +26,12 @@ class Search extends React.Component {
   }
 
   async searchResultClicked(searchResult) {
-
     let response = await fetch(
       `http://api.waqi.info/feed/${searchResult.station.name}/?token=8d8e978e647d2b0a8c17c04ba331c0117cd06dc8`,
     )
     let locationData = (await response.json()).data
     console.log(locationData)
-    // this.props.locationDataReceived(searchResult);
+    this.props.locationDataReceived(locationData);
   }
 
   render() {
