@@ -1,7 +1,10 @@
 import React from 'react'
 
-class SearchInput extends React.Component{
+
+class SearchResults extends React.Component{
   render() {
-    return
+    return <div></div>
   }
 }
+
+export default SearchResults
