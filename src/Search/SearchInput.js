@@ -5,16 +5,18 @@ class SearchInput extends React.Component {
     super(props)
     this.searchSubmitted = this.searchSubmitted.bind(this)
     this.searchFieldChanged = this.searchFieldChanged.bind(this)
+    this.state= {query:""}
   }
 
   searchSubmitted(event) {
-    // event.preventDefault()
+    event.preventDefault()
     // fetch(
     //   `http://api.waqi.info/search/?keyword=${search}&token=8d8e978e647d2b0a8c17c04ba331c0117cd06dc8`,
     // )
     //   .then(R.invoker(0, 'json'))
     //   .then(R.prop('data'))
     //   .then(setSearchData)
+    this.props.searchSubmitted(this.state.query);
   }
 
   searchFieldChanged(event) {
@@ -23,6 +25,8 @@ class SearchInput extends React.Component {
     //   R.prop('value'),
     //   R.prop('target'),
     // )
+    console.log(event.target.value);
+    this.setState({ query: event.target.value });
   }
 
   render() {
