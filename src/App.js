@@ -1,6 +1,7 @@
 import React from 'react'
 import * as R from 'ramda'
 import 'tachyons'
+import Header from './Header'
 
 const App = ({
   feed,
@@ -11,9 +12,7 @@ const App = ({
   setSearchData,
 }) => (
   <div className="flex flex-column">
-    <header className="f2 pv3 ph4 bg-light-purple white flex-grow-0 flex-shrink-0">
-      Air Quality Index
-    </header>
+    <Header title={'Air Quality'}/>
     <div className="pa5 flex-grow-1 flex-shrink-0 flex items-start">
       <div>
         <form
@@ -50,6 +49,8 @@ const App = ({
             </button>
           </div>
         </form>
+
+        {/*search results */}
         <div className="br1 br--bottom flex flex-column w5 bb bl br b--light-gray border-box">
           {searchData ? (
             <div className="pv2">
@@ -75,6 +76,10 @@ const App = ({
             </div>
           )}
         </div>
+        {/*end search results*/}
+
+
+
       </div>
       {feed && (
         <div className="ba b--light-gray br1 ml5" style={{ width: 512 }}>
