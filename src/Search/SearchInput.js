@@ -23,7 +23,7 @@ class SearchInput extends React.Component {
         <input
           type="search"
           // value={search}
-          placeholder="Melbourne"
+          placeholder="Search Locations"
           onChange={this.searchFieldChanged}
           className="form-control border-0 bg-light"
         />

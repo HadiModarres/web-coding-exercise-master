@@ -1,23 +1,36 @@
 import React from 'react'
+const Joi = require('@hapi/joi');
 
 
 class AirQualityDisplay extends React.Component{
   constructor(props){
     super(props);
+    this.schema = Joi.object({
+      city: Joi.object({name: Joi.string(),
+                        geo:Joi.array()}),
+      aqi: Joi.number()
+
+    })
   }
+
   render(){
-    return <div className="ba b--light-gray br1 ml5" style={{ width: 512 }}>
-        <div className="pv2 ph3 flex justify-between">
+    if (!(this.schema.validate(this.props.airQualityData,{allowUnknown:true}).error === undefined)){
+      return <div className={"alert alert-warning"}>Could not display data.</div>
+    }else {
+      return <div className="card-2 fadeIn" style={{ margin: "auto" }}>
+        <div className="card-body">
+          <h4>
           {this.props.airQualityData.city.name}
-          <div>
+          </h4>
+          <div className={""}>
             ({this.props.airQualityData.city.geo[0]}, {this.props.airQualityData.city.geo[1]})
           </div>
         </div>
         <div className="h4 pv2 ph3 flex justify-center items-center f1">
-          {this.props.airQualityData.aqi}
+          AQI: {this.props.airQualityData.aqi}
         </div>
         <div className="f7 pv2">
-          {this.props.airQualityData.attributions.map(({ url, name },index) => (
+          {this.props.airQualityData.attributions.map(({ url, name }, index) => (
             <div key={index} className="flex justify-between pv1 ph3">
               <div>{name}</div>
               <div className="blue pl3">{url}</div>
@@ -25,6 +38,7 @@ class AirQualityDisplay extends React.Component{
           ))}
         </div>
       </div>
+    }
 
   }
 }

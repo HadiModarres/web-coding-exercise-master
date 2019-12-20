@@ -2,22 +2,16 @@ import React from 'react'
 
 class SearchResults extends React.Component{
   render() {
-    return  <div className="card">
-      {(this.props.data && this.props.data.length>0) ? (
-        <div className={"card-body"}>
+    return  <div  className="selection-area">
+      {(this.props.data && this.props.data.length>0) && (
+        <div className={""}>
           {this.props.data.map((searchResultObj,index) => (
             <div>
-              <span className="card-body">
+            <button onClick={()=>this.props.searchResultClicked(searchResultObj)} className={"btn btn-link block w-100"}>
                 {searchResultObj.station.name}
-              </span>
-              <button id="button-addon1" type="submit" className="btn"><i
-                className="fa fa-cloud"/></button>
+            </button>
             </div>
           ))}
-        </div>
-      ) : (
-        <div className="ph3 pv2 silver h4 flex items-center justify-center">
-          Search for a city
         </div>
       )}
     </div>
